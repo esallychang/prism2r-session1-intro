@@ -2,7 +2,7 @@
 ---
 title: "Basics of data frame manipulation"
 description: |
-  This lesson continues our exploration of data frames, which will be our most important data structure moving forward with converting Prism analyses to R. Students will learn the basics of subsetting and modifying data frames, and see how to perform basic statistics on these modified data frames. 
+  This lesson continues our exploration of data frames, which will be our most important data structure moving forward with converting Prism analyses to R. Students will learn the basics of modifying and subsetting data frames, and see how to perform basic statistics on these modified data frames. We will cover how to do some of these manipulations more elegantly with tidyverse next time!
 author:
   - E. Sally Chang, PhD
 date: "2025-02-17"
@@ -12,27 +12,118 @@ editor_options:
     wrap: 72
 ---
 
-## Quarto
+## Creating and Selecting Variables from a Data Frame
 
-Quarto enables you to weave together content and executable code into a
-finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that
-includes both content and the output of embedded code. You can embed
-code like this:
+We already learned that the columns of a data frame are vectors, so that
+our data are consistent in type throughout the columns. We can take
+advantage of this to create a new, small data frame to manipulate.
+Notice that each variable we are adding uses the `c()` vector notation.
 
 ```{r}
-1 + 1
+cats <- data.frame(coat = c("calico", "black", "tabby"),
+                    weight = c(2.1, 5.0, 3.2),
+                    likes_catnip = c(1, 0, 1))
 ```
 
-You can add options to executable code like this
+We can begin exploring our dataset right away, pulling out columns by
+specifying them using the `$` operator:
 
 ```{r}
-#| echo: false
-2 * 2
+cats$weight
 ```
 
-The `echo: false` option disables the printing of code (only output is
-displayed).
+We can do other operations on the columns, say we discovered that our
+scale was consistently two pounds off and wanted to correct this:
+
+```{r}
+cats$weight + 2
+```
+
+Or wanted to add explanatory text:
+
+```{r}
+paste("My cat is", cats$coat)
+```
+
+But what about:
+
+```{r}
+#| eval: false
+#| include: false
+cats$weight + cats$coat
+```
+
+### A reminder about data types
+
+If you guessed that the last command will return an error because `2.1`
+plus `"black"` is nonsense, you’re right - and you already have some
+intuition for an important concept in programming called *data types,*
+which we already briefly discussed. We can ask what type of data
+something is:
+
+```{r}
+typeof(cats$weight)
+```
+
+This will become important when trying to merge and combine different
+data frames in later exercises.
+
+### Adding Rows and Columns of a Data Frame
+
+We already learned that the columns of a data frame are vectors, so that
+our data are consistent in type throughout the columns. As such, if we
+want to add a new column, we can start by making a new vector:
+
+```{r}
+age <- c(2, 3, 5)
+```
+
+Then, add this column via `cbind()`
+
+```{r}
+cbind(cats, age)
+```
+
+What would happen if we tried to add a column with a different number of
+observations?
+
+```{r}
+age1 <- c(2, 3, 5, 12)
+cbind(cats, age1)
+```
+
+Why didn’t this work? Of course, R wants to see one element in our new
+column for every row in the table. So for it to work we need to have
+`nrow(cats)` = `length(age)`. Let’s overwrite the content of cats with
+our new data frame.
+
+```{r}
+age <- c(2, 3, 5)
+cats <- cbind(cats, age)
+```
+
+Now how about adding rows? In the same way that columns are vectors,
+rows are a data structure called a list that can contain multiple
+different types of data:
+
+```{r}
+newRow <- list("tortoiseshell", 3.3, TRUE, 9)
+cats <- rbind(cats, newRow)
+```
+
+Run `cats` to see if our new row was added correctly!
+
+## Example when row-bind doesn't work correctly: 
+
+## Removing Rows and Columns in Data Frames
+
+``` r
+```
+
+## Appending to a Data Frame
+
+## Basics of Subsetting Vectors
+
+## Operating on Rows and Columns Using Our Data Set
+
+Further study:
