@@ -320,7 +320,7 @@ run:
 ```{r}
 #| label: start_script
 # Intro to R Lesson
-# February 24th, 202
+# February 24th, 2026
 
 # Interacting with R
 
@@ -548,11 +548,6 @@ the four files that we will be working with.
 
 <img src="../img/Data_files_annotated.png" width="500"/>
 
-::: callout-note
-If you wanted to add files onto the Posit Cloud server you could do this
-with the "Upload" button in the "Files" tab.
-:::
-
 ### The dataset
 
 In this example dataset, we have collected whole brain samples from 12
@@ -591,15 +586,6 @@ Rather than simply storing this information as text, the data ican be
 represented in a specific data structure which allows the user to sort
 and manipulate the data in a quick and efficient manner. We will discuss
 this in more detail as we go through the different lessons in R!
-
-### The functional analysis results
-
-We will be using the results from a functional analysis to learn about
-packages/functions from the [Tidyverse suite of integrated
-packages](https://www.tidyverse.org/packages/). These packages are
-designed to work together to make common data science operations, like
-data wrangling, tidying, reading/writing, parsing and visualizing, more
-user-friendly.
 
 ### Additional datasets
 
