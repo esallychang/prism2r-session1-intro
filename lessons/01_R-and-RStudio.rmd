@@ -2,15 +2,6 @@
 title: "Introduction to R and RStudio"
 description: |
   This lesson introduces participants to the R programming environment and the RStudio interface. Participants will learn how to navigate RStudio, create and manage R projects, work with scripts, use the console and understand core R concepts such as variables, functions and the assignment operator. The lesson also guides participants through organizing project directories, interacting with data and adopting recommended practices for reproducible workflows in R.
-author:
-  - Mary Piper
-  - Meeta Mistry
-  - Will Gammerdinger
-  - Noor Sohail
-date: "2025-05-30"
-categories: 
-  - R basics
-  - Data science foundations
 keywords:
   - R
   - RStudio
@@ -551,7 +542,7 @@ In addition to some of the shortcuts described earlier in this lesson,
 we have listed a few more that can be helpful as you work in RStudio.
 
 | key | action |
-|--------------------------------|----------------------------------------|
+|----|----|
 | <kbd>Ctrl</kbd>+<kbd>Enter</kbd> | Run command from the script editor in the console |
 | <kbd>ESC</kbd> | Escape the current command to return to the command prompt |
 | <kbd>Ctrl</kbd>+<kbd>1</kbd> | Move cursor from console to script editor |
