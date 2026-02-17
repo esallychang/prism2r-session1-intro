@@ -2,26 +2,15 @@
 title: "Introduction to R and RStudio"
 description: |
   This lesson introduces participants to the R programming environment and the RStudio interface. Participants will learn how to navigate RStudio, create and manage R projects, work with scripts, use the console and understand core R concepts such as variables, functions and the assignment operator. The lesson also guides participants through organizing project directories, interacting with data and adopting recommended practices for reproducible workflows in R.
-author:
-  - Mary Piper
-  - Meeta Mistry
-  - Will Gammerdinger
-  - Noor Sohail
-date: "2025-05-30"
-categories: 
-  - R basics
-  - Data science foundations
-keywords:
-  - R
-  - RStudio
-  - Data analysis
+author: "E. Sally Chang, PhD, modified from Harvard HPC material" 
+date: "2026-02-17"
 license: "CC-BY-4.0"
 editor_options: 
   markdown: 
     wrap: 72
 format:
   html:
-    self-contained: false
+    self-contained: true
 ---
 
 Approximate time: 30 minutes
@@ -89,10 +78,8 @@ terminal.
 -   Platform agnostic
 -   Open source
 
-:::::: panel-tabset
-# Local
-
-## Create a new project directory in RStudio
+::::: panel-tabset
+# Create a new project directory in Local RStudio
 
 Let's create a new project directory for our "Introduction to R" lesson
 today.
@@ -105,7 +92,7 @@ today.
     choice).
 4.  Click on `Create Project`.
 
-<img src="../img/Opening_Project.gif" width="900"/>
+<!-- -->
 
 5.  After your project is completed, if the project does not
     automatically open in RStudio, then go to the `File` menu, select
@@ -115,11 +102,9 @@ today.
 8.  Go to the `File` menu and select `Save As...`, type `Intro-to-R.R`
     and select `Save`
 
-<img src="../img/Opening_Rscript.gif" width="900"/>
-
 The RStudio interface should now look like the screenshot below.
 
-![RStudio interface](../img/Rstudio_interface.png)
+![RStudio interface](../img/Rstudio_interface.png){width="686"}
 
 ### What is a project in RStudio?
 
@@ -174,138 +159,6 @@ is, bring the nested `data` directory out of the `data` directory and
 place it directly within your RStudio project.
 :::
 
-# Posit Cloud
-
-## What is Posit Cloud?
-
-Posit is the open-source data science company who manages RStudio. While
-many R users download Rstudio to run their analyses locally, Posit
-offers a service called [Posit Cloud](https://posit.cloud/) which allows
-users to carry out their analyses in the cloud. There are advantages to
-this model including:
-
--   Your analyses are available from any computer in the world
--   Sharing Rstudio projects can be easier
-
-<img src="../img/Posit_cloud_logo.png" width="300"/>
-
-However, there are restrictions on the free accounts that come from
-Posit Cloud including:
-
--   Maximum of 25 projects
--   25 compute hours per month
--   1GB maximum of RAM
-
-## Why are we using Posit Cloud?
-
-Given the restrictions on compute time and RAM, you might wonder why we
-are teaching you R using Posit Cloud? And the answer is that Posit Cloud
-offers a great environment for teaching from and all of the principles
-that we learn using R and RStudio on Posit Cloud will apply to your
-local installation of R and RStudio as well. Some of these benefits
-include:
-
--   Shared operating system for package installations
--   Shared versions of R and packages
--   Allows instructors to take control of your RStudio environment to
-    help troubleshoot issues
--   Can pre-load data to analyze
-
-Our recommendation is for you to familiarize yourself with R and RStudio
-in this workshop in a common shared environment on Posit Cloud and then
-take these skills with you and implement them on your own analyses on a
-local installation of R and RStudio.
-
-## Entering the Introduction to R Workspace on Posit Cloud
-
-Before you are able to use Posit Cloud, you will need to make a free
-account on Posit by following [this link](https://posit.cloud/) if you
-have not done so already. Once you have made an account on Posit Cloud,
-the instructors for the workshop will have shared a link with you to
-join the Introduction to R workspace hosted by the Harvard Chan
-Bioinformatics Core or you can click [this
-link](https://posit.cloud/spaces/658857/join?access_code=gtJO2BXo7o0poV0uLxVEi_2ZKgYpUqoisHP7UZBf).
-This will take you to a webpage that looks like this:
-
-<img src="../img/Join_workspace_annotated.png" width="600"/>
-
-Once you hit the "Join" Button and it will take you to a webpage that
-looks like the one below:
-
-<img src="../img/Open_hamburger_annotated.png" width="600"/>
-
-You have now joined the Harvard Chan Bioinformatics Core's Introduction
-to R workspace on Posit Cloud.
-
-## Overview of Posit Cloud Workspaces
-
-In the left-hand panel you should see a section called "Spaces". Within
-it you should see three options:
-
--   **Your Workspace** - This is where you can use Posit Cloud's
-    resources in accordance with your account's limits. If it is the
-    free account then it would be 25 compute hours per month and 1GB of
-    RAM.
-
--   **Introduction to R** - This is the Harvard Chan Bioinformatics
-    Core's Workspace and we set the compute limits. **This workspace is
-    only to be used for the workshop and not personal use outside of the
-    workshop.**
-
--   **+ New Space** - This is what you can use to create a new workspace
-    that is tied to your personal account limits.
-
-Select the **Introduction to R** workspace. This will be the workspace
-that we will be working within for this workshop.
-
-<img src="../img/Select_workspace_annotated.png" width="600"/>
-
-## What is a project in RStudio?
-
-It is simply a directory (or folder) that contains everything related
-your analyses for a specific project. RStudio projects are useful when
-you are working on context-specific analyses and you wish to keep them
-separate. When creating a project in RStudio you associate it with a
-working directory of your choice (either an existing one, or a new one).
-A `. RProj file` is created within that directory and that keeps track
-of your command history and variables in the environment. The
-`. RProj file` can be used to open the project in its current state but
-at a later date.
-
-When a project is **(re)opened** within RStudio the following actions
-are taken:
-
--   A new R session (process) is started
--   The .RData file in the project's main directory is loaded,
-    populating the environment with any objects that were present when
-    the project was closed.
--   The .Rhistory file in the project's main directory is loaded into
-    the RStudio History pane (and used for Console Up/Down arrow command
-    history).
--   The current working directory is set to the project directory.
--   Previously edited source documents are restored into editor tabs
--   Other RStudio settings (e.g. active tabs, splitter positions, etc.)
-    are restored to where they were the last time the project was
-    closed.
-
-*Information adapted from [RStudio Support
-Site](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)*
-
-## Starting a Project on Posit Cloud
-
-We have already begun setting up the project for you and you should see
-a project called "Intro-to-R" within the **Introduction to R**
-workspace:
-
-<img src="../img/Start_project_annotated.png" width="600"/>
-
-::: callout-note
-Once you have opened the "Intro-to-R" on Posit Cloud for the first time,
-it will make a derived duplicate of the project that you are working on
-in our **Introduction to R** Workspace. In the future, you can click on
-either R project to come back to the point where you left off.
-:::
-
 The RStudio interface should now look like this:
 
 <img src="../img/Initial_state_annotated.png" width="800"/>
@@ -334,12 +187,8 @@ Next, we will **create the Rscript** that we will write our code in. In
 order to create an Rscript, click on the "File" menu option in the
 top-left, then "New File" and then select "R Script".
 
-<img src="../img/Create_R_script_annotated.png" width="800"/>
-
 This will create an R Script as the top panel on the left side of your
 RStudio window.
-
-<img src="../img/Added_R_script_annotated.png" width="800"/>
 
 Before we go any further, let's **save our new R Script** by following
 the steps listed below:
@@ -350,11 +199,7 @@ the steps listed below:
     Click the "scripts" folder.
 3.  Let's name our R Script as "Intro-to-R.R" in the text field and
     click on the "Save" button
-
-Now our RStudio window should look like this:
-
-<img src="../img/RStudio_established_annotated.png" width="800"/>
-::::::
+:::::
 
 ## RStudio Interface
 
@@ -475,7 +320,7 @@ run:
 ```{r}
 #| label: start_script
 # Intro to R Lesson
-# July 7th, 2025
+# February 24th, 202
 
 # Interacting with R
 
@@ -483,17 +328,9 @@ run:
 3 + 5
 ```
 
-::: center
-<img src="../img/Run_script_1.gif" width="700"/>
-:::
-
 Alternatively, you can send code to the console from the script editor
 to be run by pressing the `Ctrl` and `Return/Enter` keys at the same
 time as a shortcut.
-
-::: center
-<img src="../img/Run_script_2.gif" width="700"/>
-:::
 
 You should see the command run in the console and output the result.
 
