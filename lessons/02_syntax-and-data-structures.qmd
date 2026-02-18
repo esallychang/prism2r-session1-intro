@@ -11,8 +11,6 @@ editor_options:
     wrap: 72
 ---
 
-Approximate time: 50 min
-
 ```{r}
 #| label: load_data
 #| echo: false

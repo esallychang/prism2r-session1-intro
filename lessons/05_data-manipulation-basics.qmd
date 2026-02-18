@@ -2,9 +2,9 @@
 ---
 title: "Basics of data frame manipulation"
 description: |
-  This lesson continues our exploration of data frames, which will be our most important data structure moving forward with converting Prism analyses to R. Students will learn the basics of modifying and subsetting data frames, and see how to perform basic statistics on these modified data frames. We will cover how to do some of these manipulations more elegantly with tidyverse next time!
+  This lesson continues our exploration of data frames and vectors, which will be our most important data structures moving forward with converting Prism analyses to R. We will cover how to do some of these manipulations more elegantly with tidyverse next time!
 author:
-  - E. Sally Chang, PhD
+  - E. Sally Chang, PhD, modified from Harvard HPC Curriculum and Software Carpentries
 date: "2025-02-17"
 license: "CC-BY-4.0"
 editor_options: 
@@ -12,118 +12,500 @@ editor_options:
     wrap: 72
 ---
 
-## Creating and Selecting Variables from a Data Frame
+```{r}
+# Create a character vector and store the vector as a variable called 'expression'
+expression <- c("low", "high", "medium", "high", "low", "medium", "high")
+expression <- factor(expression)
+```
 
-We already learned that the columns of a data frame are vectors, so that
-our data are consistent in type throughout the columns. We can take
-advantage of this to create a new, small data frame to manipulate.
-Notice that each variable we are adding uses the `c()` vector notation.
+## Selecting data using indices and sequences
+
+When analyzing data, we often want to **partition the data so that we
+are only working with selected columns or rows.** A data frame or data
+matrix is simply a collection of vectors combined together. So let's
+begin with vectors and how to access different elements, and then extend
+those concepts to dataframes.
+
+### Vectors
+
+#### Selecting using indices
+
+If we want to extract one or several values from a vector, we must
+provide one or several indices using square brackets `[ ]` syntax. The
+**index represents the element number within a vector** (or the
+compartment number, if you think of the bucket analogy). R indices start
+at 1. Programming languages like Fortran, MATLAB, and R start counting
+at 1, because that's what human beings typically do. Languages in the C
+family (including C++, Java, Perl, and Python) count from 0 because
+that's simpler for computers to do.
+
+Let's start by creating a vector called age:
 
 ```{r}
-cats <- data.frame(coat = c("calico", "black", "tabby"),
-                    weight = c(2.1, 5.0, 3.2),
-                    likes_catnip = c(1, 0, 1))
+#| label: create_age
+# Create a vector with some random ages and assign it to age 
+age <- c(15, 22, 45, 52, 73, 81)
 ```
 
-We can begin exploring our dataset right away, pulling out columns by
-specifying them using the `$` operator:
+![](../img/vector-index.png)
+
+Suppose we only wanted the fifth value of this vector, we would use the
+following syntax:
 
 ```{r}
-cats$weight
+#| label: age_fifth
+# Extract the fifth value from the age vector
+age[5]
 ```
 
-We can do other operations on the columns, say we discovered that our
-scale was consistently two pounds off and wanted to correct this:
+If we wanted all values except the fifth value of this vector, we would
+use the following:
 
 ```{r}
-cats$weight + 2
+#| label: age_all_but_fifth
+# Extract all of the values except for the fifth value from the age vector
+age[-5]
 ```
 
-Or wanted to add explanatory text:
+If we wanted to select more than one element we would still use the
+square bracket syntax, but rather than using a single value we would
+pass in a *vector of several index values*:
 
 ```{r}
-paste("My cat is", cats$coat)
+#| label: age_vector_subset
+# Use a nested approach to extract multiple values from the age vector
+age[c(3,5,6)]   
+
+# Or create an index vector first for the indices to extract from then age vector
+idx <- c(3,5,6) 
+# Then extract the ages from the age vector using the index vector
+age[idx]
 ```
 
-But what about:
+To select a sequence of continuous values from a vector, we would use
+`:` which is a special function that creates numeric vectors of integer
+in increasing or decreasing order. Let's select the *first four values*
+from age:
 
 ```{r}
-#| eval: false
-#| include: false
-cats$weight + cats$coat
+#| label: age_sequence_subset
+# Extract the first four ages from the age vector
+age[1:4]
 ```
 
-### A reminder about data types
+Alternatively, if you wanted the reverse could try `4:1` for instance,
+and see what is returned.
 
-If you guessed that the last command will return an error because `2.1`
-plus `"black"` is nonsense, you’re right - and you already have some
-intuition for an important concept in programming called *data types,*
-which we already briefly discussed. We can ask what type of data
-something is:
+::: callout-tip
+# **Exercise 1**
+
+1.  Create a vector called `alphabets` with the following letters, C, D,
+    X, L, F.
+
+2.  Use the associated indices along with `[ ]` to do the following:
+
+    -   Only display C, D and F
+    -   Display all except X
+    -   Display the letters in the opposite order (F, L, X, D, C)
+:::
+
+#### Selecting using indices with logical operators
+
+We can also use indices with logical operators. Logical operators
+include greater than (`>`), less than (`<`), and equal to (`==`). A full
+list of logical operators in R is displayed below:
+
+| Operator | Description              |
+|:--------:|:-------------------------|
+|    \>    | greater than             |
+|   \>=    | greater than or equal to |
+|    \<    | less than                |
+|   \<=    | less than or equal to    |
+|    ==    | equal to                 |
+|    !=    | not equal to             |
+|    &     | and                      |
+|    \|    | or                       |
+
+We can use logical expressions to determine whether a particular
+condition is true or false. For example, let's use our age vector:
 
 ```{r}
-typeof(cats$weight)
+#| label: print_age
+# Show the age vector
+age
 ```
 
-This will become important when trying to merge and combine different
-data frames in later exercises.
-
-### Adding Rows and Columns of a Data Frame
-
-We already learned that the columns of a data frame are vectors, so that
-our data are consistent in type throughout the columns. As such, if we
-want to add a new column, we can start by making a new vector:
+If we wanted to know if each element in our age vector is greater than
+50, we could write the following expression:
 
 ```{r}
-age <- c(2, 3, 5)
+#| label: age_greater_than_50
+# Return a logical vector for values in age greater than 50
+age > 50
 ```
 
-Then, add this column via `cbind()`
+Returned is a vector of logical values the same length as age with TRUE
+and FALSE values indicating whether each element in the vector is
+greater than 50.
+
+We can use these logical vectors to select only the elements in a vector
+with TRUE values at the same position or index as in the logical vector.
+
+Select all values in the `age` vector over 50 **or** `age` less than 18:
 
 ```{r}
-cbind(cats, age)
+#| label: age_greater_than_50_less_than_18
+# Return a logical vector for values in age greater than 50 or less than 18
+age > 50 | age < 18
+
+# Use a nested approach to extract values from the age vector greater than 50 or less than 18
+age[age > 50 | age < 18]
+
+# Or create a logical vector for values in age greater than 50 or less than 18
+idx <- age > 50 | age < 18
+# Then extract the ages from the age vector using the index vector
+age[idx]
 ```
 
-What would happen if we tried to add a column with a different number of
-observations?
+##### Indexing with logical operators using the `which()` function
+
+While logical expressions will return a vector of TRUE and FALSE values
+of the same length, we could use the `which()` function to output the
+indices where the values are TRUE. Indexing with either method generates
+the same results, and personal preference determines which method you
+choose to use. For example:
 
 ```{r}
-age1 <- c(2, 3, 5, 12)
-cbind(cats, age1)
+#| label: age_greater_than_50_less_than_18_which
+# Return the indicies for the values in age which are greater than 50 or less than 18
+which(age > 50 | age < 18)
+
+# Use a nested approach to extract indicies from the age vector where the values are greater than 50 or less than 18
+age[which(age > 50 | age < 18)]
+
+# Or create an index vector for indices from the age vector where the values are greater than 50 or less than 18
+idx_num <- which(age > 50 | age < 18)
+# Then extract the ages from the age vector using the index vector
+age[idx_num]
 ```
 
-Why didn’t this work? Of course, R wants to see one element in our new
-column for every row in the table. So for it to work we need to have
-`nrow(cats)` = `length(age)`. Let’s overwrite the content of cats with
-our new data frame.
+Notice that we get the same results regardless of whether or not we use
+the `which()`. Also note that while `which()` works the same as the
+logical expressions for indexing, it can be used for multiple other
+operations, where it is not interchangeable with logical expressions.
+
+### Dataframes
 
 ```{r}
-age <- c(2, 3, 5)
-cats <- cbind(cats, age)
+# Read in data if you don't already have it 
+list1 <- readRDS(file="data/list1.RDS")
+metadata <- read.csv(file="data/mouse_exp_design.csv")
 ```
 
-Now how about adding rows? In the same way that columns are vectors,
-rows are a data structure called a list that can contain multiple
-different types of data:
+Dataframes (and matrices) have 2 dimensions (rows and columns), so if we
+want to select some specific data from it we need to specify the
+"coordinates" we want from it. We use the same square bracket notation
+but rather than providing a single index, there are *two indices
+required*. Within the square bracket, **row numbers come first followed
+by column numbers (and the two are separated by a comma)**. Let's
+explore the `metadata` dataframe.
+
+Let's say we wanted to **extract the wild type (`Wt`) value that is
+present in the first row and the first column**.
+
+1.  To extract it, just like with vectors, we give the name of the data
+    frame that we want to extract from, followed by the square brackets
+    (`metadata[ ]`).
+2.  Now inside the square brackets we **give the coordinates** or
+    indices for the rows in which the value(s) are present, followed by
+    a comma, then the coordinates or indices for the columns in which
+    the value(s) are present (`metadata[rows, columns]`).
+
+We know the wild type value is in the first row if we count from the
+top, so we put a one, then a comma. The wild type value is also in the
+first column, counting from left to right, so we put a one in the
+columns space too.
 
 ```{r}
-newRow <- list("tortoiseshell", 3.3, TRUE, 9)
-cats <- rbind(cats, newRow)
+#| label: subset_metadata_first_row_first_column
+# Extract value "Wt" in the first row and first column
+metadata[1, 1]
 ```
 
-Run `cats` to see if our new row was added correctly!
+Now let's extract the value `1` from the first row and third column.
 
-## Example when row-bind doesn't work correctly: 
-
-## Removing Rows and Columns in Data Frames
-
-``` r
+```{r}
+#| label: subset_metadata_first_row_third_column
+# Extract value "1" in the first row and third column
+metadata[1, 3] 
 ```
 
-## Appending to a Data Frame
+Now if you only wanted to select based on rows, you would provide the
+index for the rows and leave the columns index blank. The key here is to
+include the comma, to let R know that you are accessing a 2-dimensional
+data structure:
 
-## Basics of Subsetting Vectors
+```{r}
+#| label: subset_metadata_third_row
+# Extract third row
+metadata[3, ] 
+```
 
-## Operating on Rows and Columns Using Our Data Set
+What kind of data structure does the output appear to be? We see that it
+is two-dimensional with row names and column names, so we can surmise
+that it's likely a data frame.
 
-Further study:
+If you were selecting specific columns from the data frame - the rows
+are left blank:
+
+```{r}
+#| label: subsetset_metadata_third_column
+# Extract third column
+metadata[ , 3]   
+```
+
+Just like with vectors, you can select multiple rows and columns at a
+time. Within the square brackets, you need to provide a vector of the
+desired values.
+
+We can extract consecutive rows or columns using the colon (`:`) to
+create the vector of indices to extract.
+
+```{r}
+#| label: subset_metadata_first_two_columns
+# Extract the first two columns
+metadata[ , 1:2] 
+```
+
+Alternatively, we can use the combine function (`c()`) to extract any
+number of rows or columns. Let's extract the first, third, and sixth
+rows.
+
+```{r}
+#| label: subset_metadata_three_columns
+# Extract the first, third and sixth rows
+metadata[c(1,3,6), ] 
+```
+
+For larger datasets, it can be tricky to remember the column number that
+corresponds to a particular variable. (Is `celltype` in column 1 or 2?
+oh, right... they are in column 1). In some cases, the column/row number
+for values can change if the script you are using adds or removes
+columns/rows. It's, therefore, often better to use column/row names to
+refer to extract particular values, and it makes your code easier to
+read and your intentions clearer.
+
+```{r}
+#| label: subset_metadata_three_samples_celltype
+# Extract the first three samples for the celltype column 
+metadata[c("sample1", "sample2", "sample3") , "celltype"] 
+```
+
+It's important to type the names of the columns/rows in the exact way
+that they are typed in the data frame; for instance if I had spelled
+`celltype` with a capital `C`, it would not have worked.
+
+If you need to remind yourself of the column/row names, the following
+functions are helpful:
+
+```{r}
+#| label: metadata_rownames_colnames
+# Check column names of metadata data frame
+colnames(metadata)
+
+# Check row names of metadata data frame
+rownames(metadata)
+```
+
+If only a single column is to be extracted from a data frame, there is
+**a useful shortcut available**. If you type the name of the data frame,
+then the `$`, you have the option to choose which column to extract. For
+instance, let's extract the entire genotype column from our dataset:
+
+```{r}
+#| label: subset_metadata_genotype_column
+# Extract the genotype column
+metadata$genotype 
+```
+
+The output will always be a vector, and if desired, you can continue to
+treat it as a vector. For example, if we wanted the genotype information
+for the first five samples in `metadata`, we can use the square brackets
+(`[]`) with the indices for the values from the vector to extract:
+
+```{r}
+#| label: subset_first_five_values_genotype_column
+# Extract the first five values of the genotype column
+metadata$genotype[1:5]
+```
+
+Unfortunately, there is no equivalent `$` syntax to select a row by
+name.
+
+::: callout-tip
+# **Exercise 1**
+
+1.  Return a data frame with only the `genotype` and `replicate` column
+    values for `sample2` and `sample8`.
+
+2.  Return the fourth and ninth values of the `replicate` column.
+
+3.  Extract the `replicate` column as a data frame.
+:::
+
+#### Selecting using indices with logical operators
+
+With data frames, similar to vectors, we can use logical expressions to
+extract the rows or columns in the data frame with specific values.
+First, we need to determine the indices in a rows or columns where a
+logical expression is `TRUE`, then we can extract those rows or columns
+from the data frame.
+
+For example, if we want to return only those rows of the data frame with
+the `celltype` column having a value of `typeA`, we would perform two
+steps:
+
+1.  Identify which rows in the celltype column have a value of `typeA`.
+2.  Use those TRUE values to extract those rows from the data frame.
+
+To do this we would extract the column of interest as a vector, with the
+first value corresponding to the first row, the second value
+corresponding to the second row, so on and so forth. We use that vector
+in the logical expression. Here we are looking for values to be equal to
+`typeA`, so our logical expression would be:
+
+```{r}
+#| label: metadata_celltype_conditional
+# Determine which values in the celltype column of metadata match "typeA"
+metadata$celltype == "typeA"
+```
+
+This will output TRUE and FALSE values for the values in the vector. The
+first six values are `TRUE`, while the last six are `FALSE`. This means
+the first six rows of our metadata have a vale of `typeA` while the last
+six do not. We can save these values to a variable, which we can call
+whatever we would like; let's call it `logical_idx`.
+
+```{r}
+#| label: assign_to_index_metadata_celltype_conditional
+# Create a logical vector  for which values in the celltype column of metadata match "typeA"
+logical_idx <- metadata$celltype == "typeA"
+```
+
+Now we can use those `TRUE` and `FALSE` values to extract the rows that
+correspond to the `TRUE` values from the metadata data frame. We will
+extract as we normally would a data frame with `metadata[ , ]`, and we
+need to make sure we put the `logical_idx` in the row's space, since
+those `TRUE` and `FALSE` values correspond to the ROWS for which the
+expression is `TRUE`/`FALSE`. We will leave the column's space blank to
+return all columns.
+
+```{r}
+#| label: subset_metadata_by_logical_index
+# Subset the metadata data frame for the rows returning TRUE for "typeA" in the celltype column 
+metadata[logical_idx, ]
+```
+
+##### Selecting indices with logical operators using the `which()` function
+
+As you might have guessed, we can also use the `which()` function to
+return the indices for which the logical expression is TRUE. For
+example, we can find the indices where the `celltype` is `typeA` within
+the `metadata` dataframe:
+
+```{r}
+#| label: which_metadata_celltype_conditional
+# Return the row numbers for the rows returning TRUE for "typeA" in the celltype column 
+which(metadata$celltype == "typeA")
+```
+
+This returns the values one through six, indicating that the first 6
+values or rows are true, or equal to typeA. We can save our indices for
+which rows the logical expression is true to a variable we'll call idx,
+but, again, you could call it anything you want.
+
+```{r}
+#| label: assign_to_index_which_metadata_celltype_conditional
+# Create an index of row numbers for the rows returning TRUE for "typeA" in the celltype column 
+idx <- which(metadata$celltype == "typeA")
+```
+
+Then, we can use these indices to indicate the rows that we would like
+to return by extracting that data as we have previously, giving the
+`idx` as the rows that we would like to extract, while returning all
+columns:
+
+```{r}
+#| label: subset_metadata_by_index
+# Subset the metadata data frame for the rows returning TRUE for "typeA" in the celltype column 
+metadata[idx, ]
+```
+
+Let's try another subsetting. Extract the rows of the metadata data
+frame for only the replicates 2 and 3. First, let's create the logical
+expression for the column of interest (`replicate`):
+
+```{r}
+#| label: which_replicate_greater
+# Return the row numbers for the rows returning TRUE for being greater than 1 in the replicate column 
+which(metadata$replicate > 1)
+```
+
+This should return the indices for the rows in the `replicate` column
+within `metadata` that have a value of 2 or 3. Now, we can save those
+indices to a variable and use that variable to extract those
+corresponding rows from the `metadata` table.
+
+```{r}
+#| label: assign_to_index_which_replicate_greater
+# Create an index of row numbers for the rows returning TRUE for being greater than 1 in the replicate column 
+idx <- which(metadata$replicate > 1)
+
+# Subset the metadata data frame for the rows returning TRUE for being greater than 1 in the replicate column 
+metadata[idx, ]
+```
+
+Alternatively, instead of doing this in two steps, we could use nesting
+to perform in a single step:
+
+```{r}
+#| label: nested_which_replicate_greater
+# Subset the metadata data frame for the rows returning TRUE for being greater than 1 in the replicate column 
+metadata[which(metadata$replicate > 1), ]
+```
+
+Either way works, so use the method that is most intuitive for you.
+
+So far we haven't stored as variables any of the extractions/subsettings
+that we have performed. Let's save this output to a variable called
+`sub_meta`:
+
+```{r}
+#| label: reassign_nested_which_replicate_greater
+# Subset the metadata data frame for the rows returning TRUE for being greater than 1 in the replicate column and assign it to sub_meta
+sub_meta <- metadata[which(metadata$replicate > 1), ]
+```
+
+::: callout-tip
+# **Exercise 2**
+
+Subset the `metadata` dataframe to return only the rows of data with a
+genotype of `KO`.
+:::
+
+::: callout-note
+There are easier methods for subsetting **dataframes** using logical
+expressions, including the `filter()` and the `subset()` functions.
+These functions will return the rows of the dataframe for which the
+logical expression is TRUE, allowing us to subset the data in a single
+step. We will explore the `filter()` function in more detail in a later
+lesson.
+:::
+
+::: callout-note
+# An R package for data wrangling
+
+The methods presented above are using base R functions for data
+wrangling. Later we will explore the **Tidyverse suite of packages**,
+specifically designed to make data wrangling easier.
+:::
