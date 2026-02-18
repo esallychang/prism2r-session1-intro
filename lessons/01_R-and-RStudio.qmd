@@ -169,8 +169,6 @@ create a folder to hold this script. In the bottom-right panel there
 should be a button that has a folder with a green plus on it and says
 "New Folder", click this button:
 
-<img src="../img/New_folder.png" width="800"/>
-
 ::: callout-note
 Depending on the size of your window, the "New Folder" button may just
 have the icon or the icon and the word "Folder".
@@ -275,10 +273,6 @@ code.
 
 Click on "Code" at the top of your RStudio screen and left-click "Soft
 Wrap Long Lines" in the pull down menu.
-
-::: center
-<img src="../img/Soft_wrap.gif" width="600"/>
-:::
 
 ## Interacting with R
 
