@@ -2,17 +2,13 @@
 title: "Introduction to R and RStudio"
 description: |
   This lesson introduces participants to the R programming environment and the RStudio interface. Participants will learn how to navigate RStudio, create and manage R projects, work with scripts, use the console and understand core R concepts such as variables, functions and the assignment operator. The lesson also guides participants through organizing project directories, interacting with data and adopting recommended practices for reproducible workflows in R.
-keywords:
-  - R
-  - RStudio
-  - Data analysis
 license: "CC-BY-4.0"
 editor_options: 
   markdown: 
     wrap: 72
 format:
   html:
-    self-contained: false
+    self-contained: true
 ---
 
 ## Learning Objectives
