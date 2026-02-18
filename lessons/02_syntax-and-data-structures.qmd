@@ -2,13 +2,14 @@
 title: "R Syntax and Data Structures"
 description: |
   This lesson introduces participants to fundamental R syntax, core data types and commonly used data structures. Through guided examples, participants learn how to create and work with vectors, factors, matrices, data frames and lists. This will build a strong foundation for data analysis in R.
-author:
-  - E. Sally Chang, PhD
-date: "2025-05-30"
+date: "2025-02-17"
 license: "CC-BY-4.0"
 editor_options: 
   markdown: 
     wrap: 72
+format:
+  html:
+    self-contained: true
 ---
 
 ```{r}
@@ -187,7 +188,7 @@ species <- c("ecoli", "human", "corn")
 ```
 
 ::: callout-tip
-# [**Exercise 1**](02_syntax-and-data-structures-Answer_key.qmd#exercise-1)
+# **Exercise 1**
 
 1.  Try to create a vector of numeric and character values by
     *combining* the two vectors that we just created (`glengths` and
@@ -353,7 +354,7 @@ df
 ```
 
 ::: callout-tip
-# [**Exercise 3**](02_syntax-and-data-structures-Answer_key.qmd#exercise-3)
+# **Exercise 3**
 
 Create a data frame called `favorite_books` with the following vectors
 as columns:
@@ -415,7 +416,7 @@ position. We will talk more about how to inspect and manipulate
 components of lists in later lessons.
 
 ::: callout-tip
-# [**Exercise 4**](02_syntax-and-data-structures-Answer_key.qmd#exercise-4)
+# **Exercise 4**
 
 Create a list called `list2` containing `species`, `glengths`, and
 `number`.

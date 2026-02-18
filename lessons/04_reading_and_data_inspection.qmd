@@ -2,16 +2,15 @@
 title: "Reading in and inspecting data"
 description: |
   This lesson introducing how to read data into R from common file formats and how to inspect data structures using essential base R functions. Participants practice importing text files, explore key arguments in functions like `read.csv()` and `read.table()` and develop skills to summarize and explore datasets effectively.
-author:
-  - E. Sally Chang, PhD
-date: "2025-02-17"
+date: "2026-02-17"
 license: "CC-BY-4.0"
 editor_options: 
   markdown: 
     wrap: 72
+format:
+  html:
+    self-contained: true
 ---
-
-Approximate time: 45 min
 
 ## Learning Objectives
 
@@ -146,7 +145,7 @@ called `metadata`.
 ```{r}
 #| label: read_metadata
 # Read in the mouse_exp_design.csv and assign it to metadata
-metadata <- read.csv(file="data/mouse_exp_design.csv")
+metadata <- read.csv(file="../data/mouse_exp_design.csv")
 ```
 
 ::: callout-note
@@ -158,7 +157,7 @@ provides a shortcut to listing objects, and inline help for functions.
 possible.
 :::
 
-<<br><br> Now the dataset has been imported into your
+<br><br> Now the dataset has been imported into your
 environment.<br><br>
 
 <hr />
@@ -198,7 +197,7 @@ almost always use them with data frames.
 :::
 
 ::: callout-tip
-# [**Exercise 1**](04_reading_and_data_inspection-Answer_key.qmd#exercise-1)
+# **Exercise 1**
 
 1.  Inside your project's `data` folder you should see a file called
     `project-summary.txt`. Read it in to R using `read.table()` with the

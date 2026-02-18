@@ -2,16 +2,15 @@
 title: "Functions and Arguments"
 description: |
   This lesson introduces participants to functions in R, demonstrating how they work, how to modify their behavior using arguments and how to access R’s built‑in help tools. Participants also practice creating their own user‑defined functions to automate repeated tasks.
-author:
-  - Sally Chang
-date: "2025-05-30"
+date: "February 18, 2026"
 license: "CC-BY-4.0"
 editor_options: 
   markdown: 
     wrap: 72
+format:
+  html:
+    self-contained: true
 ---
-
-Approximate time: 35 min
 
 ```{r}
 #| label: load_data
@@ -205,7 +204,7 @@ useful when a function has many arguments.
 :::
 
 ::: callout-tip
-# [**Exercise 1**](03_functions-and-arguments-Answer_key.qmd#exercise-1)
+# **Exercise 1**
 
 1.  Let's use base R function to calculate **mean** value of the
     `glengths` vector. You might need to search online to find what
@@ -326,7 +325,7 @@ site](https://www.r-bloggers.com/how-to-write-and-debug-an-r-function/),
 which is where we adapted this example from.
 
 ::: callout-tip
-# [**Exercise 2**](03_functions-and-arguments-Answer_key.qmd#exercise-2)
+# **Exercise 2**
 
 Write a function called `multiply_it`, which takes two inputs: a numeric
 value `x`, and a numeric value `y`. The function will return the product

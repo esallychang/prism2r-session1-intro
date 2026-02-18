@@ -1,15 +1,14 @@
 ---
----
-title: "Basics of data frame manipulation"
+title: "Basics of data manipulation"
 description: |
   This lesson continues our exploration of data frames and vectors, which will be our most important data structures moving forward with converting Prism analyses to R. We will cover how to do some of these manipulations more elegantly with tidyverse next time!
-author:
-  - E. Sally Chang, PhD, modified from Harvard HPC Curriculum and Software Carpentries
-date: "2025-02-17"
 license: "CC-BY-4.0"
 editor_options: 
   markdown: 
     wrap: 72
+format:
+  html:
+    self-contained: true
 ---
 
 ```{r}
@@ -198,8 +197,7 @@ operations, where it is not interchangeable with logical expressions.
 
 ```{r}
 # Read in data if you don't already have it 
-list1 <- readRDS(file="data/list1.RDS")
-metadata <- read.csv(file="data/mouse_exp_design.csv")
+metadata <- read.csv(file="../data/mouse_exp_design.csv")
 ```
 
 Dataframes (and matrices) have 2 dimensions (rows and columns), so if we
