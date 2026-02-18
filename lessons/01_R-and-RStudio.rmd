@@ -15,8 +15,6 @@ format:
     self-contained: false
 ---
 
-Approximate time: 30 minutes
-
 ## Learning Objectives
 
 -   Describe what R and RStudio are.
@@ -542,7 +540,7 @@ In addition to some of the shortcuts described earlier in this lesson,
 we have listed a few more that can be helpful as you work in RStudio.
 
 | key | action |
-|----|----|
+|--------------------------------|----------------------------------------|
 | <kbd>Ctrl</kbd>+<kbd>Enter</kbd> | Run command from the script editor in the console |
 | <kbd>ESC</kbd> | Escape the current command to return to the command prompt |
 | <kbd>Ctrl</kbd>+<kbd>1</kbd> | Move cursor from console to script editor |
