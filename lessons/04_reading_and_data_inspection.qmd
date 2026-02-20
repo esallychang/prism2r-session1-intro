@@ -107,8 +107,7 @@ given function. Let's take a look at 2 examples:
 
 ***The take-home from the "Usage" section for `read.csv()` is that it
 has one mandatory argument, the path to the file and filename in
-quotations; in our case that is `data/mouse_exp_design.csv` or
-`data/mouse_exp_design.txt`.***
+quotations; in our case that is `data/mouse_exp_design.csv`.***
 
 ::: callout-note
 # Looking ahead to next session: The `stringsAsFactors` argument
@@ -144,8 +143,9 @@ called `metadata`.
 
 ```{r}
 #| label: read_metadata
+#| eval: false
 # Read in the mouse_exp_design.csv and assign it to metadata
-metadata <- read.csv(file="../data/mouse_exp_design.csv")
+metadata <- read.csv(file="data/mouse_exp_design.csv")
 ```
 
 ::: callout-note
@@ -226,6 +226,7 @@ and the columns contain categorical information about the sample
 
 ```{r}
 #| label: print_metadata
+#| eval: false
 # Print out the metadata object
 metadata
 ```
@@ -236,6 +237,7 @@ lines) of this `data.frame` using the function `head()`:
 
 ```{r}
 #| label: head_metadata
+#| eval: false
 # Print out the first six lines of the metadata object
 head(metadata)
 ```

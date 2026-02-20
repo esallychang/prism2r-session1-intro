@@ -538,7 +538,9 @@ Let's take a few minutes to familiarize ourselves with the data.
 
 You can access the files we need for this workshop by clicking on the
 `data/` directory within the "Files" tab. Within here, you should find
-the four files that we will be working with.
+the four files that we will be working with. Note that the views below
+will not be available until we actually "read" the data into the script
+in Lesson 03.
 
 <img src="../img/Data_files_annotated.png" width="500"/>
 

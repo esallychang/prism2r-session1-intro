@@ -2349,7 +2349,7 @@ Note
 <li>whereas for <code>read.csv()</code> it is <code>header = TRUE</code> (by default, it assumes that all your columns have names listed).</li>
 </ul></li>
 </ol>
-<p><strong><em>The take-home from the “Usage” section for <code>read.csv()</code> is that it has one mandatory argument, the path to the file and filename in quotations; in our case that is <code>data/mouse_exp_design.csv</code> or <code>data/mouse_exp_design.txt</code>.</em></strong></p>
+<p><strong><em>The take-home from the “Usage” section for <code>read.csv()</code> is that it has one mandatory argument, the path to the file and filename in quotations; in our case that is <code>data/mouse_exp_design.csv</code>.</em></strong></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2385,7 +2385,7 @@ Note
 <p>Let’s read in the <code>mouse_exp_design</code> file and create a new data frame called <code>metadata</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the mouse_exp_design.csv and assign it to metadata</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">&quot;../data/mouse_exp_design.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">&quot;data/mouse_exp_design.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2452,35 +2452,11 @@ Note
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the metadata object</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>metadata</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>         genotype celltype replicate
-sample1        Wt    typeA         1
-sample2        Wt    typeA         2
-sample3        Wt    typeA         3
-sample4        KO    typeA         1
-sample5        KO    typeA         2
-sample6        KO    typeA         3
-sample7        Wt    typeB         1
-sample8        Wt    typeB         2
-sample9        Wt    typeB         3
-sample10       KO    typeB         1
-sample11       KO    typeB         2
-sample12       KO    typeB         3</code></pre>
-</div>
 </div>
 <p>Suppose we had a larger file, we might not want to display all the contents in the console. Instead we could check the top (the first 6 lines) of this <code>data.frame</code> using the function <code>head()</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the first six lines of the metadata object</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metadata)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>        genotype celltype replicate
-sample1       Wt    typeA         1
-sample2       Wt    typeA         2
-sample3       Wt    typeA         3
-sample4       KO    typeA         1
-sample5       KO    typeA         2
-sample6       KO    typeA         3</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the first six lines of the metadata object</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(metadata)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="list-of-functions-for-data-inspection" class="level3">
 <h3 class="anchored" data-anchor-id="list-of-functions-for-data-inspection">List of functions for data inspection</h3>

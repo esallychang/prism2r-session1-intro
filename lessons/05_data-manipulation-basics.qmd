@@ -195,11 +195,6 @@ operations, where it is not interchangeable with logical expressions.
 
 ### Dataframes
 
-```{r}
-# Read in data if you don't already have it 
-metadata <- read.csv(file="../data/mouse_exp_design.csv")
-```
-
 Dataframes (and matrices) have 2 dimensions (rows and columns), so if we
 want to select some specific data from it we need to specify the
 "coordinates" we want from it. We use the same square bracket notation
@@ -487,8 +482,8 @@ sub_meta <- metadata[which(metadata$replicate > 1), ]
 ::: callout-tip
 # **Exercise 2**
 
-Subset the `metadata` dataframe to return only the rows of data with a
-genotype of `KO`.
+Subset the `metadata` dataframe to return only the rows of data that do
+NOT have a genotype of `KO`.
 :::
 
 ::: callout-note
