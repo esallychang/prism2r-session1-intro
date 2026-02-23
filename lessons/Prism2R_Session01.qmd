@@ -1,8 +1,6 @@
 ---
-title: "Introduction to R and RStudio"
-description: |
-  This lesson introduces participants to the R programming environment and the RStudio interface. Participants will learn how to navigate RStudio, create and manage R projects, work with scripts, use the console and understand core R concepts such as variables, functions and the assignment operator. The lesson also guides participants through organizing project directories, interacting with data and adopting recommended practices for reproducible workflows in R.
-author: "E. Sally Chang, PhD, modified from Harvard HPC material" 
+title: "Moving Confidently from Graphpad Prism to R: Session 01"
+author: "E. Sally Chang, PhD, modified from Harvard HPC and Software Carpentries material" 
 date: "2026-02-17"
 license: "CC-BY-4.0"
 editor_options: 
@@ -16,6 +14,14 @@ format:
 ---
 
 # Part 1: Intro to R and RStudio
+
+**Description:** This lesson introduces participants to the R
+programming environment and the RStudio interface. Participants will
+learn how to navigate RStudio, create and manage R projects, work with
+scripts, use the console and understand core R concepts such as
+variables, functions and the assignment operator. The lesson also guides
+participants through organizing project directories, interacting with
+data and adopting recommended practices for reproducible workflows in R.
 
 ### Learning Objectives
 
@@ -100,13 +106,9 @@ today.
     automatically open in RStudio, then go to the `File` menu, select
     `Open Project`, and choose `Intro-to-R.Rproj`.
 6.  When RStudio opens, you will see three panels in the window.
-7.  Go to the `File` menu and select `New File`, and select `R Script`.
-8.  Go to the `File` menu and select `Save As...`, type `Intro-to-R.R`
-    and select `Save`
 
-The RStudio interface should now look like the screenshot below.
-
-![RStudio interface](../img/Rstudio_interface.png){width="686"}
+The RStudio interface should now look like the screenshot below (minus
+the R Script, which we will add in a moment).
 
 ### What is a project in RStudio?
 
@@ -675,7 +677,7 @@ different data structures.** These include, but are not limited to,
 vectors (`c`), factors (`factor`), matrices (`matrix`), data frames
 (`data.frame`) and lists (`list`).
 
-### Vectors
+## Vectors
 
 A vector is the most common and basic data structure in R, and is pretty
 much the workhorse of R. It's basically just a collection of values,
@@ -794,7 +796,7 @@ species <- c("ecoli", "human", "corn")
     compared to the original vectors?
 :::
 
-### Factors
+## Factors
 
 A **factor** is a special type of vector that is used to **store
 categorical data**. Each unique category is referred to as a **factor
@@ -808,8 +810,8 @@ a factor that appears like a vector, but has integer values stored
 under-the-hood. The integer value assigned is a one for females and a
 two for males. The numbers are assigned in alphabetical order, so
 because the f- in females comes before the m- in males in the alphabet,
-females get assigned a one and males a two. In later lessons we will
-show you how you could change these assignments.
+females get assigned a one and males a two. In later lessons we may show
+you how you could change these assignments.
 
 ![](../img/factors_sm.png)
 
@@ -880,7 +882,7 @@ for each celltype.
 2.  Turn `samplegroup` into a factor data structure.
 :::
 
-### Matrix
+## Matrix
 
 A `matrix` in R is a collection of vectors of **same length and
 identical datatype**. Vectors can be combined as columns in the matrix
@@ -895,7 +897,7 @@ data is not of identical data type (numeric, character, etc.), the
 `matrix()` function will throw an error and stop any downstream code
 execution.
 
-### Data Frame
+## Data Frame
 
 A `data.frame` is the *de facto* data structure for most tabular data
 and what we use for statistics and plotting. A `data.frame` is similar
@@ -962,7 +964,7 @@ pages <- c(453, 432, 328)
 ```
 :::
 
-### Bonus material: Lists
+## Bonus material: Lists
 
 Lists are a data structure in R that can be perhaps a bit daunting at
 first, but soon become amazingly useful. A list is a data structure that
@@ -1495,6 +1497,12 @@ called `metadata`.
 metadata <- read.csv(file="data/mouse_exp_design.csv")
 ```
 
+```{r}
+#| echo: false
+#| output: false
+metadata <- read.csv(file="~/Documents/Prism2R/prism2r-session1-intro/data/mouse_exp_design.csv")
+```
+
 ::: callout-note
 RStudio supports the automatic completion of code using the
 <kbd>Tab</kbd> key. This is especially helpful for when reading in files
@@ -1643,9 +1651,8 @@ next few homework sections.
 5.  When you use the `rownames()` function on `metadata`, what is the
     *data structure* of the output?
 
-\[Optional\] How many elements in (how long is) the output of
-`colnames(proj_summary)`? Don't count, but use another function to
-determine this.
+6.  How long is the output of `colnames(proj_summary)`? Don't count
+    manually - use another function to determine this!
 :::
 
 # Part 5: Data Manipulation Basics
@@ -1741,7 +1748,7 @@ and see what is returned.
     -   Display the letters in the opposite order (F, L, X, D, C)
 :::
 
-#### Selecting using indices with logical operators
+## Selecting using indices with logical operators
 
 We can also use indices with logical operators. Logical operators
 include greater than (`>`), less than (`<`), and equal to (`==`). A full
@@ -1799,7 +1806,7 @@ idx <- age > 50 | age < 18
 age[idx]
 ```
 
-### Indexing with logical operators using the `which()` function
+## Indexing with logical operators using the `which()` function
 
 While logical expressions will return a vector of TRUE and FALSE values
 of the same length, we could use the `which()` function to output the
@@ -1826,7 +1833,7 @@ the `which()`. Also note that while `which()` works the same as the
 logical expressions for indexing, it can be used for multiple other
 operations, where it is not interchangeable with logical expressions.
 
-### Dataframes
+## Data Frames
 
 Dataframes (and matrices) have 2 dimensions (rows and columns), so if we
 want to select some specific data from it we need to specify the
@@ -2032,7 +2039,7 @@ return all columns.
 metadata[logical_idx, ]
 ```
 
-##### Selecting indices with logical operators using the `which()` function
+### Selecting indices with logical operators using the `which()` function
 
 As you might have guessed, we can also use the `which()` function to
 return the indices for which the logical expression is TRUE. For
