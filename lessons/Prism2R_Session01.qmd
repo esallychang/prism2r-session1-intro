@@ -1500,7 +1500,7 @@ metadata <- read.csv(file="data/mouse_exp_design.csv")
 ```{r}
 #| echo: false
 #| output: false
-metadata <- read.csv(file="~/Documents/Prism2R/prism2r-session1-intro/data/mouse_exp_design.csv")
+metadata <- read.csv(file="/Users/k2690794/Documents/Prism_To_R/prism2r-session1-intro/data/mouse_exp_design.csv")
 ```
 
 ::: callout-note
@@ -1976,7 +1976,7 @@ Unfortunately, there is no equivalent `$` syntax to select a row by
 name.
 
 ::: callout-tip
-# **Exercise 1**
+# **Exercise 2**
 
 1.  Return a data frame with only the `genotype` and `replicate` column
     values for `sample2` and `sample8`.
@@ -2120,7 +2120,7 @@ sub_meta <- metadata[which(metadata$replicate > 1), ]
 ```
 
 ::: callout-tip
-# **Exercise 2**
+# **Exercise 3**
 
 Subset the `metadata` dataframe to return only the rows of data that do
 NOT have a genotype of `KO`.
